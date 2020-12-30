@@ -1,3 +1,11 @@
 p {
   display: inline;
 }
+
+span.todo-text {
+  color:#747474;
+}
+
+p{
+  width:20px;
+}

@@ -5,15 +5,15 @@ class TodoItem extends Component {
   render() {
     const {item, notifyChecked, notifyDelete} = this.props; 
     return (  
-      <div>
+      <div className="item">
         <input 
           type="checkbox" 
           onChange={e => notifyChecked(item, e.target.checked)}
           checked={item.checked}
         >
         </input>
-        <p>#{item.id} {this.displayText(item)}</p>
-        <button onClick={()=>notifyDelete(item)}>Delete</button>
+        <p>#{item.id} <span className="todo-text">{this.displayText(item)}</span></p>
+        <button onClick={()=>notifyDelete(item)} className="deleteBtn">Delete</button>
       </div>
     );
   }

@@ -11,7 +11,7 @@ class EditItems extends Component {
 
   render() { 
     return ( 
-      <div>
+      <div className="edit-wrapper">
         <input type="text" maxLength="70" onChange={e=>this.handleChange(e.target.value)}/>
         <button onClick={()=>this.props.notifySubmit(this.state.input)}>Add!</button>
       </div>

@@ -2,14 +2,15 @@ import React, {Component} from 'react';
 import EditItems from './components/editItems';
 import ItemList from './components/ItemList';
 import NavBar from './components/navbar';
+import './App.css';
 
 class App extends Component {
   state = { 
     items: [
-      {id: 1, text: "Basic text1", checked: false},
-      {id: 2, text: "Basic text2", checked: false},
-      {id: 3, text: "Basic text3", checked: false},
-      {id: 4, text: "Basic text4", checked: false}
+      {id: 1, text: "Laundry", checked: false},
+      {id: 2, text: "Rent payment", checked: false},
+      {id: 3, text: "Work", checked: false},
+      {id: 4, text: "Exercise!", checked: false}
     ]
   }
 
@@ -57,14 +58,16 @@ class App extends Component {
         <NavBar
           numOfIncomplete={this.state.items.filter(e=>!e.checked).length}
         />
-        <ItemList 
-          items={this.state.items}
-          notifyChecked={this.handleChecked}
-          notifyDelete={this.handleDelete}
-        />
-        <EditItems
-          notifySubmit={this.handleSubmit}
-        />
+        <div className="todo-wrapper">
+          <ItemList
+            items={this.state.items}
+            notifyChecked={this.handleChecked}
+            notifyDelete={this.handleDelete}
+          />
+          <EditItems
+            notifySubmit={this.handleSubmit}
+          />
+        </div>
       </React.Fragment>
      );
   }

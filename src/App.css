@@ -1,0 +1,11 @@
+button {
+  background: none;
+  color:#fc6203;
+  border:#fc6203 2px solid;
+  width:70px;
+  border-radius: 6px;
+}
+
+.todo-wrapper {
+  margin-left:6px;
+}
