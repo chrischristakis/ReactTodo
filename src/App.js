@@ -6,9 +6,10 @@ import NavBar from './components/navbar';
 class App extends Component {
   state = { 
     items: [
-      {id: 1, text: "Basic text", checked: false},
-      {id: 2, text: "Basic text", checked: false},
-      {id: 4, text: "Basic text", checked: false}
+      {id: 1, text: "Basic text1", checked: false},
+      {id: 2, text: "Basic text2", checked: false},
+      {id: 3, text: "Basic text3", checked: false},
+      {id: 4, text: "Basic text4", checked: false}
     ]
   }
 
@@ -36,17 +37,30 @@ class App extends Component {
     //(id 3 should be in 3rd position, before 4. Even if newly added.)
     items.splice(lowestId-1,0,{id:lowestId, text:input, checked:false});
     this.setState({items:items});
-  }
+  };
+
+  handleDelete = (item) => {
+    //1>new array with item filtered out.
+    let items = this.state.items.filter(e=>e.id!==item.id);
+    //2>change everything only above the deleted element.
+    let toChange = items.slice(item.id-1);
+    //3>use map on everything above to shift their ids down by 1
+    toChange = toChange.map(e=>({id:e.id-1,text:e.text,checked:false}));
+    //4>update state using new mapped array
+    items = items.slice(0, item.id-1).concat(toChange);
+    this.setState({items:items});
+  };
 
   render() { 
     return (
       <React.Fragment>
         <NavBar
-          numOfIncomplete={this.state.items.filter(i=>!i.checked).length}
+          numOfIncomplete={this.state.items.filter(e=>!e.checked).length}
         />
         <ItemList 
           items={this.state.items}
           notifyChecked={this.handleChecked}
+          notifyDelete={this.handleDelete}
         />
         <EditItems
           notifySubmit={this.handleSubmit}
