@@ -5,14 +5,14 @@ class ItemList extends Component {
   render() { 
     const {items, notifyChecked} = this.props;
     return (
-      <div>
+      <React.Fragment>
         {items.map(item =>
           <TodoItem key={item.id}
             item={item}
             notifyChecked={notifyChecked}
           />
         )}
-      </div>
+      </React.Fragment>
     );
   }
 }
